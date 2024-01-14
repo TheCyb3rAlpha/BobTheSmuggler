@@ -1,7 +1,7 @@
 from core.operations.handlers import *
 from core.logging.debug import SetLogging
 from core.argsparser import SetupArgumentParse, ValidateArgs
-from core.utilities.utils import CompressThenEncode64, DisplayBanner, cleanup
+from core.utilities.utils import CompressFileDir, DisplayBanner, cleanup
 
 BANNER_PATH = "./resources/config/banner/banner.txt"
 
@@ -21,8 +21,8 @@ def main():
     # Validate arguments
     ValidateArgs(args)
     print(f"Starting Compression and Encryption stage...")
-    PathToZIPFile = CompressThenEncode64(args.i, args.p, args.c)
-    print(PathToZIPFile)
+    PathToZIPFile = CompressFileDir(args.i, args.p, args.c)
+    print(f"\033[93mCompression and Encryption stage completed. \033[0m\033[91mArchive file created : \033[0m\033[92m{PathToZIPFile}\033[0m | \033[91mSize : \033[0m\033[92m{round(os.path.getsize(PathToZIPFile)/1024)} bytes\033[0m\n")
 
     # Handling based on the type
     if args.t == 'html':

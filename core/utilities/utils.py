@@ -9,7 +9,11 @@ import pyminizip
 import magic
 
 def cleanup():
-    os.remove('temp')
+    TempFile = []
+    for TempFile in ['temp.7z', 'temp.zip']:
+        if os.path.exists(TempFile):
+            os.remove(TempFile)
+    print(f"\033[91m[Cleanup] Removed {TempFile}\033[0m")
 
 def DisplayBanner(path):
     with open(path, 'r') as file:
@@ -40,18 +44,33 @@ def Base64Encode(filename):
     with open(filename, "rb") as file:
         return base64.b64encode(file.read()).decode('utf-8')
     
-def CompressThenEncode64(filename, password, format='zip'):
-    ofile = 'temp'
-    logging.debug(f"Compressing {filename} with password [{password}] using {format} format.")
+def CompressFileDir(FileOrDirectory, password, format='7z'):
+    ofile = 'temp.7z' if format == '7z' else 'temp.zip'
+    logging.debug(f"Compressing {FileOrDirectory} with password [{password}] using {format} format.")
     try:
-        if format == '7z':
-            with py7zr.SevenZipFile(ofile, mode='w', password=password) as archive:
-                archive.write(filename, os.path.basename(filename))
-        elif format == 'zip':
-            # Compression level 5, ZIP stores password in plain text, use for compatibility only
-            pyminizip.compress(filename, None, ofile, password, 5)
+        # Check if input path is a file or directory
+        if os.path.isfile(FileOrDirectory):
+            # Compress a single file
+            if format == '7z':
+                with py7zr.SevenZipFile(ofile, mode='w', password=password) as archive:
+                    archive.write(FileOrDirectory, os.path.basename(FileOrDirectory))
+            elif format == 'zip':
+                # Compression level 5, ZIP stores password in plain text, use for compatibility only
+                pyminizip.compress(FileOrDirectory, None, ofile, password, 5)
+        elif os.path.isdir(FileOrDirectory):
+            # Compress all files in a directory
+            FilesList = [os.path.join(FileOrDirectory, f) for f in os.listdir(FileOrDirectory) if os.path.isfile(os.path.join(FileOrDirectory, f))]
+            print(f"\033[92mFiles found in the Directory {os.path.abspath(FileOrDirectory)}/:\033[0m")
+            for files in FilesList:
+                print(f"\033[92m  - {files}\033[0m")
+            if format == '7z':
+                with py7zr.SevenZipFile(ofile, mode='w', password=password) as archive:
+                    for fname in FilesList:
+                        archive.write(fname, os.path.relpath(fname, FileOrDirectory))
+            elif format == 'zip':
+                pyminizip.compress_multiple(FilesList, [], ofile, password, 5)
         else:
-            raise ValueError("Unsupported compression format.")
+            raise ValueError(f"Invalid path or unsupported file type: {FileOrDirectory}")
     except Exception as e:
         logging.error(f"Error during compression: {e}")
         raise

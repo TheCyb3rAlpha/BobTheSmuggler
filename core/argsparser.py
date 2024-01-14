@@ -5,7 +5,7 @@ def SetupArgumentParse():
     
     # Setup argparse
     parser = argparse.ArgumentParser(description="Embeds EXE/DLL file into an HTML/SVG file.")
-    parser.add_argument("-i", required=True, help="Path to the EXE/DLL file.", metavar='EXE_FILE')
+    parser.add_argument("-i", required=True, help="Path to the EXE/DLL file or directory (In case multiple files are provided). ", metavar='EXE_FILE')
     parser.add_argument("-p", required=False, help="Password for compression.", metavar='PASSWORD')
     parser.add_argument("-f",required=True, help="HTML Smuggled file (.html)", metavar='OUTPUT_HTML')
     parser.add_argument("-o", required=True, help="Downloaded file name (Your payload is in this file.)", metavar='OUTPUT_FILENAME')
