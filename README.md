@@ -7,6 +7,8 @@ _Jan 15th, 2024 - **Support for multi-file compression has been added**. If you 
 
 ## Project Description
 
+Check out my blog to get a thorough understanding of how to use this tool: [BobTheSmuggler: Your Covert Cyber Swiss Knife for Undetectable Payload Delivery](https://medium.com/@TheCyb3rAlpha/bobthesmuggler-your-covert-cyber-swiss-knife-for-undetectable-payload-delivery-bc84f3037522).
+
 **"Bob the Smuggler"** is a tool that leverages HTML Smuggling Attack and allows you to create HTML files with embedded 7z/zip archives. The tool would compress your binary (EXE/DLL) into 7z/zip file format, then XOR encrypt the archive and then hides inside PNG/GIF image file format (Image Polyglots). The JavaScript embedded within the HTML will download the PNG/GIF file and store it in the cache. Following this, the JavaScript will extract the data embedded in the PNG/GIF, assemble it, perform XOR decryption, and then store it as an in-memory blob.
 
 ![](https://www.plantuml.com/plantuml/dpng/bP7BRzf04CRl_YkcbygSE5O2LQKonhIYJSGZoe7BuXt3IlkmPjSGyzTdRCSAIW0f5qlU-RxVFBw93u92PNJqBHpG81WHa9I8slSe6YqnHtL4I5ymhuBOQOIPua-SFgV3wM8n6BCeSQOaz1w-GsfpgilGYhOs_d4UdbK99nKEK0hlJuvaOr45n2rdveXRmazu_9yDW6Um4DVe1n70A3Kxb3qHPTTOsKRAw8rNTW-hW7jXtPv4UQYPZDhZPtZsPtQNoFKl4bTFsLqYrplhH-Dy_My1Zk21TwNRYAaYp8EkcTLQjfOzSs6bnixwHlJSnKfLS0ePMYGH4FwAerZbf3Y6nCac1jPoWe547fIp7DDlxz7iTDrdaLG-EDCDjqPJweQpyIX_NGtbiWKFUCtTRs_TJTiK2r7fqFg6VB0BRxzJGiZ_V18hzBkkkT2Ogyr3Twub2bb3uOYXMXsHQgxpK6KqOLHbz2i0)
