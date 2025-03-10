@@ -1,3 +1,15 @@
+<div align="center">
+
+  ![GitHub License](https://img.shields.io/github/license/TheCyb3rAlpha/BobTheSmuggler?color=yellow)
+  ![GitHub repo size](https://img.shields.io/github/repo-size/TheCyb3rAlpha/BobTheSmuggler?color=green)
+  [![Twitter Follow](https://img.shields.io/twitter/follow/TheCyb3rAlpha.svg?style=social)](https://twitter.com/TheCyb3rAlpha)
+  [![Visitors](https://visitor-badge.laobi.icu/badge?page_id=TheCyb3rAlpha.BobTheSmuggler)](https://github.com/TheCyb3rAlpha/BobTheSmuggler)
+  ![GitHub Stars](https://img.shields.io/github/stars/TheCyb3rAlpha/BobTheSmuggler)
+
+
+
+</div>
+
 # BobTheSmuggler
 
 ![](images/bob.png)
